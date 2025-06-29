@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🚦 Yo'lNigoh AI Startup MVP - Uzbekistan</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Навбар -->
+  <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yo'lNigoh AI - Uzbekistan</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Agar CSS kerak bo'lsa -->
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">🚦 Yo'lNigoh AI - Uzbekistandagi Sun'iy Intelekt Asosidagi Startup</div>
+        <div class="navbar-links">
+            <a href="/home">Главная</a>
+            <a href="/statistics">📊 Статистика</a>
+            <a href="/districts">📍 Районы</a>
+            <a href="/ai-logic">🧠 AI Логика</a>
+            <a href="/settings">⚙️ Настройки</a>
+            <a href="/logout">🚪 Выйти</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <!-- Home, Statistics, AI Logic, Settings, etc. sahifalarining kontentini shu yerga qo'yasiz -->
+        <div class="home-page">
+            <h1>Yo'lNigoh AI - Uzbekistan</h1>
+            <p>Bizning sun'iy intellekt tizimimiz, yo'l harakati monitoringini amalga oshirib, avtomobillarni aniqlash, tirbandlikni tahlil qilish va svetofor boshqaruvini optimallashtiradi.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+  <!-- Контейнер -->
+  <div class="container">
+    <div class="info-panel">
+      <h2>📍 Traffic Camera Overview</h2>
+      <div class="status-grid">
+        <div class="stat">
+          <div class="label">Detected Cars</div>
+          <div class="value" id="count">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Traffic Light</div>
+          <div class="value" id="lightState">Auto</div>
+        </div>
+        <div class="stat">
+          <div class="label">Next Switch In</div>
+          <div class="value" id="timer">--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-panel">
+      <img id="frame" src="/frame.jpg" alt="Yo'lNigoh AI orqali Holat tahlili" />
+    </div>
+  </div>
+
+  <script>
+    function updateImage() {
+      const img = document.getElementById('frame');
+      img.src = `/frame.jpg?${Date.now()}`;
+    }
+
+    function updateCount() {
+      fetch('/count')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('count').innerText = data.count;
+          // Простая логика для отображения светофора
+          
+
+
+
+
+
+
+
+        // Traffic intensityni hisoblash (Python'dagi logikaga o'xshash)
+function calculateTrafficIntensity(vehicleCount) {
+    const heavyTrafficThreshold = 15;
+    const highVehicles = 40;
+    const veryLow = 5;
+    const noVehicles = 0;
+
+    if (vehicleCount > heavyTrafficThreshold) {
+        return "Yuqori"; // Heavy trafik
+    } else if (vehicleCount === noVehicles) {
+        return "Avtomobil Yo'q"; // Avtomobil yo'q
+    } else if (vehicleCount < veryLow) {
+        return "Juda past"; // Juda past
+    } else if (vehicleCount > highVehicles) {
+        return "O'ta Yuqori"; // O'ta yuqori
+    } else {
+        return "O'rtacha"; // O'rtacha trafik
+    }
+}
+
+// Green signalni moslashtirish (Python'dagi adjust_green_signal funktsiyasiga o'xshash)
+function adjustGreenSignal(trafficIntensity) {
+    let greenTime;
+    if (trafficIntensity === "Yuqori") {
+        greenTime = 30; // Heavy trafik uchun uzunroq yashil chiroq (masalan, 30 soniya)
+    } else if (trafficIntensity === "Avtomobil Yo'q") {
+        greenTime = 0; // Avtomobil yo'q bo'lsa, chiroq o'chadi
+    } else if (trafficIntensity === "Juda past") {
+        greenTime = 5; // Juda past trafik uchun qisqaroq yashil chiroq
+    } else if (trafficIntensity === "O'ta Yuqori") {
+        greenTime = 60; // O'ta yuqori trafik uchun uzun yashil chiroq
+    } else {
+        greenTime = 15; // O'rtacha trafik uchun qisqaroq yashil chiroq
+    }
+
+    return greenTime;
+}
+
+// Light va timer uchun HTML elementlariga moslashtirish
+const light = document.getElementById('lightState');
+const timer = document.getElementById('timer');
+
+// Bu erda data.count transport vositalari sonini bildiradi
+const vehicleCount = 10;  // Masalan, 10 ta avtomobil bo'lsa
+
+const trafficIntensity = calculateTrafficIntensity(vehicleCount);
+const greenSignalTime = adjustGreenSignal(trafficIntensity);
+
+// Traffic holatini va timerni o'zgartirish
+if (trafficIntensity === "Yuqori") {
+    light.innerText = '🟥 Red';
+    timer.innerText = `${greenSignalTime}s`;  // 30 soniya
+} else if (trafficIntensity === "Avtomobil Yo'q") {
+    light.innerText = '🟥 Red';
+    timer.innerText = '0s';  // Avtomobilsiz
+} else if (trafficIntensity === "Juda past") {
+    light.innerText = '🟡 Yellow';
+    timer.innerText = `${greenSignalTime}s`;  // 5 soniya
+} else if (trafficIntensity === "O\'ta Yuqori") {
+    light.innerText = '🟩 Green';
+    timer.innerText = `${greenSignalTime}s`;  // 60 soniya
+} else {
+    light.innerText = '🟩 Green';
+    timer.innerText = `${greenSignalTime}s`;  // 15 soniya
+}
+
+
+
+
+
+
+
+
+        });
+    }
+
+    setInterval(() => {
+      updateImage();
+      updateCount();
+    }, 1000);
+  </script>
+</body>
+</html>
