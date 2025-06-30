@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bizning Jamoa | Yo'lNigoh AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2c7be5;
+      --primary-dark: #1a5bbf;
+      --success: #00d97e;
+      --warning: #f6c343;
+      --dark: #12263f;
+      --darker: #0a1929;
+      --light: #f9fafd;
+      --gray: #95aac9;
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--darker) 0%, #091625 100%);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(18, 38, 63, 0.95);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      animation: pulse 2s infinite;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link:hover {
+      background: rgba(44, 123, 229, 0.2);
+      color: var(--primary);
+    }
+
+    .nav-link i {
+      font-size: 1.2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: linear-gradient(rgba(10, 25, 41, 0.9), rgba(10, 25, 41, 0.9)), 
+                  url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #fff, #a0c4ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: var(--gray);
+    }
+
+    /* Team Section */
+    .team-section {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #fff, #a0c4ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .section-subtitle {
+      color: var(--gray);
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+
+    .member-image {
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .member-info {
+      padding: 2rem;
+    }
+
+    .member-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .member-position {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .member-bio {
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .member-achievements {
+      background: rgba(44, 123, 229, 0.1);
+      border-left: 3px solid var(--primary);
+      padding: 1rem;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      margin-top: 1.5rem;
+    }
+
+    .achievement-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--light);
+    }
+
+    .achievement-list {
+      padding-left: 1.5rem;
+    }
+
+    .achievement-list li {
+      margin-bottom: 0.5rem;
+      color: var(--gray);
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(10, 25, 41, 0.9);
+      padding: 3rem 2rem 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--light);
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gray);
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .hero {
+        padding: 3rem 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .team-section {
+        padding: 3rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .member-name {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">🚦</div>
+      <div class="logo-text">Yo'lNigoh AI</div>
+    </div>
+    
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+      <li><a href="#" class="nav-link"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+      <li><a href="#" class="nav-link"><i class="fas fa-map-marker-alt"></i> Tumanlar</a></li>
+      <li><a href="#" class="nav-link"><i class="fas fa-brain"></i> AI Logikasi</a></li>
+      <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Sozlamalar</a></li>
+      <li><a href="team.html" class="nav-link active"><i class="fas fa-users"></i> Bizning Jamoa</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Bizning Jamoa</h1>
+    <p>Yo'lNigoh AI - Transport oqimlarini optimallashtirish, tirbandlikni kamaytirish va harakat xavfsizligini oshirish uchun sun'iy intellekt va komputer ko'rish texnologiyalarini qo'llagan aqlli transport boshqaruvi tizimi.</p>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="section-header">
+      <h2 class="section-title">Ishonchli Mutaxassislar</h2>
+      <p class="section-subtitle">Yo'lnigoh AI loyihasini rivojlantiruvchi iste'dodli jamoa a'zolari</p>
+    </div>
+    
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');"></div>
+        <div class="member-info">
+          <h3 class="member-name">G'oziyev Otabek</h3>
+          <span class="member-position">Texnik Rahbar</span>
+          <p class="member-bio">Yo'lnigoh AI Start-Up Texnik Rahbari, O'zbekCosmos tomonidan tashkillashtirilgan jamoaviy 2025 yildagi Respublika CanSat loyihasining g'olibi.</p>
+          <div class="member-achievements">
+            <div class="achievement-title">Yutuqlar:</div>
+            <ul class="achievement-list">
+              <li>Texnofest Xalqaro tanlovi finalchisi</li>
+              <li>Sun'iy intellekt va robotatexnika yo'nalishida tajriba</li>
+              <li>Loyiha boshqaruvi mutaxassisi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80');"></div>
+        <div class="member-info">
+          <h3 class="member-name">Akramjonov Saidjon</h3>
+          <span class="member-position">Dasturiy Ta'minot Bo'limi Rahbari</span>
+          <p class="member-bio">Sobiq Prezident maktabining o'quvchisi va dasturlashga qiziqadigan yosh iste'dod. Viloyat va respublika miqyosida ko'plab mukofotlar sohibi.</p>
+          <div class="member-achievements">
+            <div class="achievement-title">Yutuqlar:</div>
+            <ul class="achievement-list">
+              <li>Dasturlash bo'yicha viloyat 1-o'rin</li>
+              <li>Respublika miqyosida 2-o'rin</li>
+              <li>Frontend va backend dasturlash tajribasi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('https://images.unsplash.com/photo-1480429370139-e0132c086e2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80');"></div>
+        <div class="member-info">
+          <h3 class="member-name">Samandar Haydarov</h3>
+          <span class="member-position">Dizayn Bo'limi Boshlig'i</span>
+          <p class="member-bio">3D modellashtirish va VFX sohalarida tajribaga ega mutaxassis. Loyihada texnik va vizual dizayn ishlari bilan shug'ullanadi.</p>
+          <div class="member-achievements">
+            <div class="achievement-title">Yutuqlar:</div>
+            <ul class="achievement-list">
+              <li>3 yillik grafik dizayn tajribasi</li>
+              <li>1 yillik 3D modellashtirish tajribasi</li>
+              <li>Yangi avlod vizual yechimlari mutaxassisi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <div class="member-image" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');"></div>
+        <div class="member-info">
+          <h3 class="member-name">Abdumannobova Umida</h3>
+          <span class="member-position">Mahsulot Menejeri</span>
+          <p class="member-bio">Frontend mutaxassisi va product management bo'yicha tajriba sohibasi. Texnik ko'nikmalari va menejmentdagi muvaffaqiyatlari loyihani samarali boshqarishga yordam beradi.</p>
+          <div class="member-achievements">
+            <div class="achievement-title">Yutuqlar:</div>
+            <ul class="achievement-list">
+              <li>Frontend dasturlash mutaxassisi</li>
+              <li>Mahsulot boshqaruvi tajribasi</li>
+              <li>Jamoaviy loyiha boshqaruvi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Yo'lNigoh AI</h3>
+        <p>Aqlli transport tizimlari uchun innovatsion yechimlar. Shahar trafikini optimallashtirish va xavfsizlikni oshirish.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Foydali havolalar</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Bosh sahifa</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Statistika</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Tumanlar</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> AI Logikasi</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Sozlamalar</a></li>
+          <li><a href="team.html"><i class="fas fa-chevron-right"></i> Bizning Jamoa</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Aloqa</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Toshkent shahri, Yunusobod tumani</a></li>
+          <li><a href="tel:+998901234567"><i class="fas fa-phone"></i> +998 90 123 45 67</a></li>
+          <li><a href="mailto:info@yolnigoh.ai"><i class="fas fa-envelope"></i> info@yolnigoh.ai</a></li>
+          <li><a href="#"><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 Yo'lNigoh AI. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Add animation to team members when they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const teamMembers = document.querySelectorAll('.team-member');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      teamMembers.forEach(member => {
+        member.style.opacity = '0';
+        member.style.transform = 'translateY(30px)';
+        member.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(member);
+      });
+    });
+  </script>
+</body>
+</html>

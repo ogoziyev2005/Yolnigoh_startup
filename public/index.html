@@ -1,172 +1,1439 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <title>🚦 Yo'lNigoh AI Startup MVP - Uzbekistan</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <!-- Навбар -->
-  <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yo'lNigoh AI - Uzbekistan</title>
-    <link rel="stylesheet" href="styles.css">  <!-- Agar CSS kerak bo'lsa -->
-</head>
-<body>
-    <nav class="navbar">
-        <div class="navbar-brand">🚦 Yo'lNigoh AI - Uzbekistandagi Sun'iy Intelekt Asosidagi Startup</div>
-        <div class="navbar-links">
-            <a href="/home">Главная</a>
-            <a href="/statistics">📊 Статистика</a>
-            <a href="/districts">📍 Районы</a>
-            <a href="/ai-logic">🧠 AI Логика</a>
-            <a href="/settings">⚙️ Настройки</a>
-            <a href="/logout">🚪 Выйти</a>
-        </div>
-    </nav>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚦 Yo'lNigoh AI - Aqlli Transport Boshqaruvi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2c7be5;
+      --primary-dark: #1a5bbf;
+      --danger: #e63757;
+      --success: #00d97e;
+      --warning: #f6c343;
+      --dark: #12263f;
+      --darker: #0a1929;
+      --light: #f9fafd;
+      --gray: #95aac9;
+      --light-gray: #eef2f7;
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      --card-bg: rgba(255, 255, 255, 0.9);
+    }
 
-    <div class="content">
-        <!-- Home, Statistics, AI Logic, Settings, etc. sahifalarining kontentini shu yerga qo'yasiz -->
-        <div class="home-page">
-            <h1>Yo'lNigoh AI - Uzbekistan</h1>
-            <p>Bizning sun'iy intellekt tizimimiz, yo'l harakati monitoringini amalga oshirib, avtomobillarni aniqlash, tirbandlikni tahlil qilish va svetofor boshqaruvini optimallashtiradi.</p>
-        </div>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--darker) 0%, #091625 100%);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(18, 38, 63, 0.95);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      animation: pulse 2s infinite;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background: rgba(44, 123, 229, 0.2);
+      color: var(--primary);
+    }
+
+    .nav-link i {
+      font-size: 1.2rem;
+    }
+
+    .user-menu {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--success));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(44, 123, 229, 0.5);
+    }
+
+    /* Page Content */
+    .page-content {
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #fff, #a0c4ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .page-subtitle {
+      color: var(--gray);
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Dashboard Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--dark);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .card-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0.5rem 0;
+      color: var(--dark);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--dark);
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    /* Traffic Light Card */
+    .traffic-light-card {
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      color: white;
+      border: 1px solid rgba(0, 217, 126, 0.2);
+    }
+
+    .traffic-light-card .card-title,
+    .traffic-light-card .card-value,
+    .traffic-light-card .card-footer {
+      color: white;
+    }
+
+    .light-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .light {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      opacity: 0.3;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .light.active {
+      opacity: 1;
+      box-shadow: 0 0 25px currentColor;
+      transform: scale(1.1);
+    }
+
+    #redLight { color: #ff4d4d; }
+    #yellowLight { color: #ffd700; }
+    #greenLight { color: #00ff7f; }
+
+    /* Video Feed */
+    .video-container {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      position: relative;
+      box-shadow: var(--box-shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-feed {
+      width: 100%;
+      display: block;
+      min-height: 500px;
+      background: #000;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 25, 41, 0.8);
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .video-overlay i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Detection Results */
+    .detection-results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .detection-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .detection-item:hover {
+      transform: translateY(-5px);
+      background: rgba(44, 123, 229, 0.15);
+    }
+
+    .detection-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(44, 123, 229, 0.15);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .detection-count {
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .detection-label {
+      font-size: 1rem;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* Statistics */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-container {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: var(--box-shadow);
+      color: var(--dark);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .chart-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .chart {
+      height: 300px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .bar {
+      flex: 1;
+      background: var(--primary);
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      transition: height 0.5s ease;
+    }
+
+    .bar-label {
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    /* Map */
+    .map-container {
+      height: 500px;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 2rem;
+      box-shadow: var(--box-shadow);
+    }
+
+    .map-overlay {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      border-radius: 12px;
+      z-index: 10;
+      max-width: 300px;
+    }
+
+    .map-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .district-list {
+      list-style: none;
+    }
+
+    .district-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .district-name {
+      font-weight: 600;
+    }
+
+    .district-value {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(10, 25, 41, 0.9);
+      padding: 3rem 2rem 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gray);
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none !important;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-content {
+        padding: 1rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .light {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .video-feed {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">🚦</div>
+      <div class="logo-text">Yo'lNigoh AI</div>
     </div>
-</body>
-</html>
+    
+    <ul class="nav-menu">
+      <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+      <li><a href="#" class="nav-link" data-page="statistics"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+      <li><a href="#" class="nav-link" data-page="districts"><i class="fas fa-map-marker-alt"></i> Tumanlar</a></li>
+      <li><a href="#" class="nav-link" data-page="ai-logic"><i class="fas fa-brain"></i> AI Logikasi</a></li>
+      <li><a href="#" class="nav-link" data-page="settings"><i class="fas fa-cog"></i> Sozlamalar</a></li>
+    </ul>
+    
+    <div class="user-menu">
+      <div class="user-avatar">AD</div>
+    </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="page-content">
+    <!-- Home Page -->
+    <section id="home-page" class="page">
+      <div class="page-header">
+        <h1 class="page-title">Yo'l Harakati Monitoringi</h1>
+        <p class="page-subtitle">Real vaqt rejimida transport oqimlarini tahlil qilish va boshqarish</p>
+      </div>
 
-
-
-
-  <!-- Контейнер -->
-  <div class="container">
-    <div class="info-panel">
-      <h2>📍 Traffic Camera Overview</h2>
-      <div class="status-grid">
-        <div class="stat">
-          <div class="label">Detected Cars</div>
-          <div class="value" id="count">0</div>
+      <!-- Stats Cards -->
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Aniqlangan transportlar</div>
+            <div class="card-icon"><i class="fas fa-car"></i></div>
+          </div>
+          <div class="card-value" id="vehicleCount">0</div>
+          <div class="card-footer">
+            <i class="fas fa-sync-alt"></i>
+            <span>Real vaqt rejimida yangilanadi</span>
+          </div>
         </div>
-        <div class="stat">
-          <div class="label">Traffic Light</div>
-          <div class="value" id="lightState">Auto</div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Trafik holati</div>
+            <div class="card-icon"><i class="fas fa-traffic-light"></i></div>
+          </div>
+          <div class="card-value" id="trafficStatus">Yengil</div>
+          <div class="card-footer">
+            <i class="fas fa-road"></i>
+            <span id="locationStatus">Toshkent sh., Yunusobod t.</span>
+          </div>
         </div>
-        <div class="stat">
-          <div class="label">Next Switch In</div>
-          <div class="value" id="timer">--</div>
+        
+        <div class="card traffic-light-card">
+          <div class="card-header">
+            <div class="card-title">Svetofor holati</div>
+            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+          </div>
+          <div class="light-indicator">
+            <div class="light" id="redLight">🔴</div>
+            <div class="light" id="yellowLight">🟡</div>
+            <div class="light active" id="greenLight">🟢</div>
+          </div>
+          <div class="card-footer">
+            <i class="fas fa-clock"></i>
+            <span>Qolgan vaqt: <span id="lightTimer">15</span> soniya</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="video-panel">
-      <img id="frame" src="/frame.jpg" alt="Yo'lNigoh AI orqali Holat tahlili" />
-    </div>
-  </div>
+      <!-- Video Feed -->
+      <div class="video-container">
+        <img id="videoFeed" src="https://placehold.co/1200x600/333/fff?text=Real-time+Traffic+Feed" alt="Yo'l harakati monitoringi" class="video-feed">
+        <div class="video-overlay" id="loadingIndicator">
+          <i class="fas fa-circle-notch fa-spin"></i>
+          <span>Kamera ulanyapti...</span>
+        </div>
+      </div>
 
-  <script>
-    function updateImage() {
-      const img = document.getElementById('frame');
-      img.src = `/frame.jpg?${Date.now()}`;
-    }
+      <!-- Detection Results -->
+      <h2 class="page-title" style="text-align: left; margin-bottom: 1.5rem; font-size: 1.8rem;">Aniqlangan obyektlar</h2>
+      <div class="detection-results">
+        <div class="detection-item">
+          <div class="detection-icon">
+            <i class="fas fa-car"></i>
+          </div>
+          <div class="detection-count" id="carCount">0</div>
+          <div class="detection-label">Avtomobillar</div>
+        </div>
+        
+        <div class="detection-item">
+          <div class="detection-icon">
+            <i class="fas fa-bus"></i>
+          </div>
+          <div class="detection-count" id="busCount">0</div>
+          <div class="detection-label">Avtobuslar</div>
+        </div>
+        
+        <div class="detection-item">
+          <div class="detection-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <div class="detection-count" id="truckCount">0</div>
+          <div class="detection-label">Yuk mashinalari</div>
+        </div>
+        
+        <div class="detection-item">
+          <div class="detection-icon">
+            <i class="fas fa-motorcycle"></i>
+          </div>
+          <div class="detection-count" id="motorcycleCount">0</div>
+          <div class="detection-label">Mototsikllar</div>
+        </div>
+      </div>
+    </section>
 
-    function updateCount() {
-      fetch('/count')
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('count').innerText = data.count;
-          // Простая логика для отображения светофора
+    <!-- Statistics Page -->
+    <section id="statistics-page" class="page hidden">
+      <div class="page-header">
+        <h1 class="page-title">Trafik Statistika</h1>
+        <p class="page-subtitle">Transport oqimlarining tarixiy ma'lumotlari va tahlillari</p>
+      </div>
+
+      <div class="stats-container">
+        <div class="chart-container">
+          <div class="chart-header">
+            <h3 class="chart-title">Kunlik trafik intensivligi</h3>
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+          </div>
+          <div class="chart" id="daily-traffic-chart">
+            <div class="bar" style="height: 70%;"><span class="bar-label">Dushanba</span></div>
+            <div class="bar" style="height: 85%;"><span class="bar-label">Seshanba</span></div>
+            <div class="bar" style="height: 95%;"><span class="bar-label">Chorshanba</span></div>
+            <div class="bar" style="height: 80%;"><span class="bar-label">Payshanba</span></div>
+            <div class="bar" style="height: 100%;"><span class="bar-label">Juma</span></div>
+            <div class="bar" style="height: 60%;"><span class="bar-label">Shanba</span></div>
+            <div class="bar" style="height: 45%;"><span class="bar-label">Yakshanba</span></div>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <div class="chart-header">
+            <h3 class="chart-title">Transport turlari bo'yicha</h3>
+            <div class="card-icon"><i class="fas fa-car-side"></i></div>
+          </div>
+          <div class="chart" id="vehicle-type-chart">
+            <div class="bar" style="height: 75%;"><span class="bar-label">Avtomobil</span></div>
+            <div class="bar" style="height: 35%;"><span class="bar-label">Avtobus</span></div>
+            <div class="bar" style="height: 25%;"><span class="bar-label">Yuk mashina</span></div>
+            <div class="bar" style="height: 20%;"><span class="bar-label">Mototsikl</span></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Eng band yo'llar</div>
+          <div class="card-icon"><i class="fas fa-road"></i></div>
+        </div>
+        <div style="padding: 1rem;">
+          <ul style="list-style: none;">
+            <li style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+              <span>Amir Temur shoh ko'chasi</span>
+              <span style="color: var(--danger); font-weight: 700;">92%</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+              <span>Islom Karimov ko'chasi</span>
+              <span style="color: var(--danger); font-weight: 700;">87%</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+              <span>Bobur ko'chasi</span>
+              <span style="color: var(--warning); font-weight: 700;">75%</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+              <span>Navoiy ko'chasi</span>
+              <span style="color: var(--warning); font-weight: 700;">68%</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; padding: 0.75rem 0;">
+              <span>Beruniy ko'chasi</span>
+              <span style="color: var(--success); font-weight: 700;">45%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Districts Page -->
+    <section id="districts-page" class="page hidden">
+      <div class="page-header">
+        <h1 class="page-title">Tumanlar bo'yicha trafik</h1>
+        <p class="page-subtitle">Toshkent shahri tumanlari bo'yicha trafik holati</p>
+      </div>
+
+      <div class="map-container">
+        <img src="https://placehold.co/1200x600/222/fff?text=Tashkent+Districts+Map" alt="Tumanlar xaritasi" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="map-overlay">
+          <h3 class="map-title">Tumanlar trafik indeksi</h3>
+          <ul class="district-list">
+            <li class="district-item">
+              <span class="district-name">Yunusobod</span>
+              <span class="district-value">82%</span>
+            </li>
+            <li class="district-item">
+              <span class="district-name">Mirzo Ulug'bek</span>
+              <span class="district-value">78%</span>
+            </li>
+            <li class="district-item">
+              <span class="district-name">Shayxontohur</span>
+              <span class="district-value">75%</span>
+            </li>
+            <li class="district-item">
+              <span class="district-name">Yakkasaroy</span>
+              <span class="district-value">70%</span>
+            </li>
+            <li class="district-item">
+              <span class="district-name">Chilonzor</span>
+              <span class="district-value">68%</span>
+            </li>
+            <li class="district-item">
+              <span class="district-name">Mirobod</span>
+              <span class="district-value">65%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Eng tez trafik oqimi</div>
+            <div class="card-icon"><i class="fas fa-tachometer-alt"></i></div>
+          </div>
+          <div class="card-value">Yunusobod</div>
+          <div class="card-footer">
+            <i class="fas fa-road"></i>
+            <span>O'rtacha tezlik: 42 km/soat</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Eng sekin trafik oqimi</div>
+            <div class="card-icon"><i class="fas fa-hourglass-half"></i></div>
+          </div>
+          <div class="card-value">Shayxontohur</div>
+          <div class="card-footer">
+            <i class="fas fa-road"></i>
+            <span>O'rtacha tezlik: 18 km/soat</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Eng kam avariya</div>
+            <div class="card-icon"><i class="fas fa-car-crash"></i></div>
+          </div>
+          <div class="card-value">Mirobod</div>
+          <div class="card-footer">
+            <i class="fas fa-calendar"></i>
+            <span>Oxirgi 30 kun: 3 ta</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Logic Page -->
+    <section id="ai-logic-page" class="page hidden">
+      <div class="page-header">
+        <h1 class="page-title">AI Logikasi</h1>
+        <p class="page-subtitle">Trafikni boshqarishda qo'llaniladigan sun'iy intellekt algoritmlari</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Asosiy AI komponentlari</div>
+          <div class="card-icon"><i class="fas fa-cogs"></i></div>
+        </div>
+        <div style="padding: 1.5rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div>
+              <h3 style="margin-bottom: 1rem; color: var(--primary);">Kompyuter ko'rish</h3>
+              <p>Real vaqtda transport vositalarini aniqlash va ularning harakat yo'nalishini kuzatish. YOLOv8 modeli asosida ishlaydi.</p>
+            </div>
+            <div>
+              <h3 style="margin-bottom: 1rem; color: var(--primary);">Trafik prognozi</h3>
+              <p>Transport oqimlarini oldindan aytish uchun LSTM tarmoqlaridan foydalanadi. 95% aniqlik darajasiga ega.</p>
+            </div>
+            <div>
+              <h3 style="margin-bottom: 1rem; color: var(--primary);">Optimal boshqaruv</h3>
+              <p>Q-learning algoritmi yordamida svetofor rejimlarini optimallashtiradi, tirbandlikni 40% ga kamaytiradi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Ob'ektlarni aniqlash</div>
+            <div class="card-icon"><i class="fas fa-eye"></i></div>
+          </div>
+          <div style="padding: 1rem;">
+            <ul style="list-style: none;">
+              <li style="padding: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Avtomobillar</span>
+                  <span style="color: var(--success); font-weight: 700;">98%</span>
+                </div>
+              </li>
+              <li style="padding: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Avtobuslar</span>
+                  <span style="color: var(--success); font-weight: 700;">96%</span>
+                </div>
+              </li>
+              <li style="padding: 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Yuk mashinalari</span>
+                  <span style="color: var(--success); font-weight: 700;">94%</span>
+                </div>
+              </li>
+              <li style="padding: 0.75rem;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Mototsikllar</span>
+                  <span style="color: var(--warning); font-weight: 700;">89%</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Trafik prognoz natijalari</div>
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+          </div>
+          <div style="padding: 1rem; height: 100%;">
+            <div style="display: flex; height: 200px; align-items: flex-end; gap: 0.5rem; padding: 1rem 0;">
+              <div style="flex: 1; background: rgba(44, 123, 229, 0.2); border-radius: 8px; height: 70%; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; background: var(--primary); height: 85%; border-radius: 8px;"></div>
+                <div style="position: absolute; bottom: -25px; left: 0; right: 0; text-align: center;">Haqiqiy</div>
+              </div>
+              <div style="flex: 1; background: rgba(44, 123, 229, 0.2); border-radius: 8px; height: 70%; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; background: var(--success); height: 82%; border-radius: 8px;"></div>
+                <div style="position: absolute; bottom: -25px; left: 0; right: 0; text-align: center;">Prognoz</div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+              <div style="font-size: 0.9rem; color: var(--dark);">O'rtacha prognoz aniqlik darajasi</div>
+              <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">95.2%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Tizim afzalliklari</div>
+          <div class="card-icon"><i class="fas fa-star"></i></div>
+        </div>
+        <div style="padding: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Tirbandlikni kamaytirish</h3>
+            <p>AI tizimi svetofor rejimlarini optimallashtirib, tirbandlikni 35-40% ga kamaytiradi.</p>
+          </div>
+          <div>
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Yoqilg'i tejash</h3>
+            <p>Transport vositalarining bekorga turishi kamayganligi tufayli yoqilg'i sarfi 25% ga kamayadi.</p>
+          </div>
+          <div>
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Xavfsizlik</h3>
+            <p>Avariyalarni oldini olish tizimi yordamida yo'l-transport hodisalari 30% ga kamaydi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Page -->
+    <section id="settings-page" class="page hidden">
+      <div class="page-header">
+        <h1 class="page-title">Sozlamalar</h1>
+        <p class="page-subtitle">Tizim parametrlari va foydalanuvchi sozlamalari</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Kamera sozlamalari</div>
+            <div class="card-icon"><i class="fas fa-camera"></i></div>
+          </div>
+          <div style="padding: 1.5rem;">
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Kamera manbasi</label>
+              <select style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                <option>Asosiy kamera</option>
+                <option>Ikkinchi kamera</option>
+                <option>IP kamera</option>
+              </select>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Chastotasi</label>
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <input type="range" min="1" max="10" value="5" style="flex: 1;">
+                <span>5 FPS</span>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Sifat</label>
+              <div style="display: flex; gap: 1rem;">
+                <button style="flex: 1; padding: 0.5rem; border-radius: 8px; border: 1px solid #ddd;">Past</button>
+                <button style="flex: 1; padding: 0.5rem; border-radius: 8px; background: var(--primary); color: white; border: none;">O'rta</button>
+                <button style="flex: 1; padding: 0.5rem; border-radius: 8px; border: 1px solid #ddd;">Yuqori</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">AI parametrlari</div>
+            <div class="card-icon"><i class="fas fa-brain"></i></div>
+          </div>
+          <div style="padding: 1.5rem;">
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Model</label>
+              <select style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                <option>YOLOv8s (tezkor)</option>
+                <option>YOLOv8m (o'rta)</option>
+                <option>YOLOv8l (aniq)</option>
+              </select>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Aniqlash chegarasi</label>
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <input type="range" min="20" max="90" value="60" style="flex: 1;">
+                <span>60%</span>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Ob'ekt turlari</label>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" checked> Avtomobil
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" checked> Avtobus
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" checked> Yuk mashina
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox" checked> Mototsikl
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox"> Piyodalar
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="checkbox"> Velosiped
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Hisobot parametrlari</div>
+          <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+        </div>
+        <div style="padding: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Avtomatik hisobot</h3>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="radio" name="report" checked> Har kuni
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="radio" name="report"> Haftada
+              </label>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <input type="time" value="08:00" style="padding: 0.5rem; border-radius: 8px; border: 1px solid #ddd;">
+              <button class="btn btn-primary">Saqlash</button>
+            </div>
+          </div>
           
+          <div>
+            <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Hisobot formatlari</h3>
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" checked> PDF
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox"> Excel
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" checked> CSV
+              </label>
+            </div>
+            <div>
+              <button class="btn btn-primary">Hisobotni yuklab olish</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Yo'lNigoh AI</h3>
+        <p>Aqlli transport tizimlari uchun innovatsion yechimlar. Shahar trafikini optimallashtirish va xavfsizlikni oshirish.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Foydali havolalar</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Bosh sahifa</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Statistika</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Tumanlar</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> AI Logikasi</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Sozlamalar</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Aloqa</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Toshkent shahri, Yunusobod tumani</a></li>
+          <li><a href="tel:+998901234567"><i class="fas fa-phone"></i> +998 90 123 45 67</a></li>
+          <li><a href="mailto:info@yolnigoh.ai"><i class="fas fa-envelope"></i> info@yolnigoh.ai</a></li>
+          <li><a href="#"><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 Yo'lNigoh AI. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script src="traffic-system.js"></script>
 
 
 
+  // ======================
+// Traffic Management System
+// Module: trafficSystem.js
+// Version: 1.0
+// Author: Yo'lNigoh AI Team
+// ======================
 
+const TrafficSystem = (() => {
+  // DOM Elements
+  const elements = {
+    videoFeed: document.getElementById('videoFeed'),
+    loadingIndicator: document.getElementById('loadingIndicator'),
+    vehicleCount: document.getElementById('vehicleCount'),
+    trafficStatus: document.getElementById('trafficStatus'),
+    carCount: document.getElementById('carCount'),
+    busCount: document.getElementById('busCount'),
+    truckCount: document.getElementById('truckCount'),
+    motorcycleCount: document.getElementById('motorcycleCount'),
+    redLight: document.getElementById('redLight'),
+    yellowLight: document.getElementById('yellowLight'),
+    greenLight: document.getElementById('greenLight'),
+    lightTimer: document.getElementById('lightTimer'),
+    locationStatus: document.getElementById('locationStatus'),
+    navLinks: document.querySelectorAll('.nav-link'),
+    pages: document.querySelectorAll('.page')
+  };
 
+  // Traffic light states
+  const LIGHT_STATES = {
+    RED: 'red',
+    YELLOW: 'yellow',
+    GREEN: 'green'
+  };
 
+  // Configuration
+  const config = {
+    updateIntervals: {
+      video: 1000,    // Update video every 1 second
+      data: 5000,     // Update traffic data every 5 seconds
+      timer: 1000,    // Update traffic light timer every 1 second
+      location: 5000  // Rotate location every 5 seconds
+    },
+    locations: [
+      "Toshkent sh., Yunusobod t.",
+      "Toshkent sh., Mirzo Ulug'bek t.",
+      "Toshkent sh., Shayxontohur t.",
+      "Samarqand sh., Registon ko'chasi",
+      "Buxoro sh., Labi Hovuz"
+    ]
+  };
 
-        // Traffic intensityni hisoblash (Python'dagi logikaga o'xshash)
-function calculateTrafficIntensity(vehicleCount) {
-    const heavyTrafficThreshold = 15;
-    const highVehicles = 40;
-    const veryLow = 5;
-    const noVehicles = 0;
+  // System state
+  let state = {
+    currentLightState: LIGHT_STATES.GREEN,
+    timerValue: 15,
+    currentGreenTime: 15,
+    currentLocationIndex: 0,
+    intervals: {}
+  };
 
-    if (vehicleCount > heavyTrafficThreshold) {
-        return "Yuqori"; // Heavy trafik
-    } else if (vehicleCount === noVehicles) {
-        return "Avtomobil Yo'q"; // Avtomobil yo'q
-    } else if (vehicleCount < veryLow) {
-        return "Juda past"; // Juda past
-    } else if (vehicleCount > highVehicles) {
-        return "O'ta Yuqori"; // O'ta yuqori
+  // ======================
+  // Page Navigation
+  // ======================
+  
+  function initNavigation() {
+    // Show home page by default
+    showPage('home');
+    
+    // Add event listeners to nav links
+    elements.navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage(link.dataset.page);
+      });
+    });
+  }
+  
+  function showPage(pageId) {
+    // Hide all pages
+    elements.pages.forEach(page => page.classList.add('hidden'));
+    
+    // Show selected page
+    document.getElementById(`${pageId}-page`).classList.remove('hidden');
+    
+    // Update active nav link
+    elements.navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.dataset.page === pageId) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  // ======================
+  // Traffic Light Control
+  // ======================
+  
+  function initTrafficLight() {
+    updateTrafficLight(0); // Initialize with 0 vehicles
+    state.intervals.timer = setInterval(updateTimer, config.updateIntervals.timer);
+  }
+  
+  function updateTrafficLight(vehicleCount) {
+    // Reset all lights
+    elements.redLight.classList.remove('active');
+    elements.yellowLight.classList.remove('active');
+    elements.greenLight.classList.remove('active');
+    
+    const trafficIntensity = getTrafficStatus(vehicleCount);
+    state.currentGreenTime = getGreenLightDuration(trafficIntensity);
+    
+    // Set the current light state
+    if (state.currentLightState === LIGHT_STATES.GREEN) {
+      elements.greenLight.classList.add('active');
+      state.timerValue = state.currentGreenTime;
+    } else if (state.currentLightState === LIGHT_STATES.YELLOW) {
+      elements.yellowLight.classList.add('active');
     } else {
-        return "O'rtacha"; // O'rtacha trafik
+      elements.redLight.classList.add('active');
     }
-}
-
-// Green signalni moslashtirish (Python'dagi adjust_green_signal funktsiyasiga o'xshash)
-function adjustGreenSignal(trafficIntensity) {
-    let greenTime;
-    if (trafficIntensity === "Yuqori") {
-        greenTime = 30; // Heavy trafik uchun uzunroq yashil chiroq (masalan, 30 soniya)
-    } else if (trafficIntensity === "Avtomobil Yo'q") {
-        greenTime = 0; // Avtomobil yo'q bo'lsa, chiroq o'chadi
-    } else if (trafficIntensity === "Juda past") {
-        greenTime = 5; // Juda past trafik uchun qisqaroq yashil chiroq
-    } else if (trafficIntensity === "O'ta Yuqori") {
-        greenTime = 60; // O'ta yuqori trafik uchun uzun yashil chiroq
+    
+    elements.lightTimer.textContent = state.timerValue;
+  }
+  
+  function updateTimer() {
+    if (state.timerValue > 0) {
+      state.timerValue--;
+      elements.lightTimer.textContent = state.timerValue;
     } else {
-        greenTime = 15; // O'rtacha trafik uchun qisqaroq yashil chiroq
+      // Transition to next light state
+      if (state.currentLightState === LIGHT_STATES.GREEN) {
+        // Green -> Yellow
+        state.currentLightState = LIGHT_STATES.YELLOW;
+        elements.greenLight.classList.remove('active');
+        elements.yellowLight.classList.add('active');
+        state.timerValue = 3;
+      } else if (state.currentLightState === LIGHT_STATES.YELLOW) {
+        // Yellow -> Red
+        state.currentLightState = LIGHT_STATES.RED;
+        elements.yellowLight.classList.remove('active');
+        elements.redLight.classList.add('active');
+        state.timerValue = 10;
+      } else {
+        // Red -> Green
+        state.currentLightState = LIGHT_STATES.GREEN;
+        elements.redLight.classList.remove('active');
+        elements.greenLight.classList.add('active');
+        state.timerValue = state.currentGreenTime;
+      }
     }
+  }
+  
+  function getGreenLightDuration(trafficIntensity) {
+    const intensityMap = {
+      "Avtomobil yo'q": 0,
+      "Juda past": 5,
+      "Yengil": 15,
+      "O'rtacha": 30,
+      "Qattiq": 45,
+      "O'ta qattiq": 60
+    };
+    return intensityMap[trafficIntensity] || 15;
+  }
 
-    return greenTime;
-}
-
-// Light va timer uchun HTML elementlariga moslashtirish
-const light = document.getElementById('lightState');
-const timer = document.getElementById('timer');
-
-// Bu erda data.count transport vositalari sonini bildiradi
-const vehicleCount = 10;  // Masalan, 10 ta avtomobil bo'lsa
-
-const trafficIntensity = calculateTrafficIntensity(vehicleCount);
-const greenSignalTime = adjustGreenSignal(trafficIntensity);
-
-// Traffic holatini va timerni o'zgartirish
-if (trafficIntensity === "Yuqori") {
-    light.innerText = '🟥 Red';
-    timer.innerText = `${greenSignalTime}s`;  // 30 soniya
-} else if (trafficIntensity === "Avtomobil Yo'q") {
-    light.innerText = '🟥 Red';
-    timer.innerText = '0s';  // Avtomobilsiz
-} else if (trafficIntensity === "Juda past") {
-    light.innerText = '🟡 Yellow';
-    timer.innerText = `${greenSignalTime}s`;  // 5 soniya
-} else if (trafficIntensity === "O\'ta Yuqori") {
-    light.innerText = '🟩 Green';
-    timer.innerText = `${greenSignalTime}s`;  // 60 soniya
-} else {
-    light.innerText = '🟩 Green';
-    timer.innerText = `${greenSignalTime}s`;  // 15 soniya
-}
-
-
-
-
-
-
-
-
-        });
+  // ======================
+  // Traffic Data & Video
+  // ======================
+  
+  function initDataUpdates() {
+    updateVideoFeed();
+    fetchTrafficData();
+    
+    state.intervals.video = setInterval(updateVideoFeed, config.updateIntervals.video);
+    state.intervals.data = setInterval(fetchTrafficData, config.updateIntervals.data);
+    state.intervals.location = setInterval(updateLocation, config.updateIntervals.location);
+  }
+  
+  function updateVideoFeed() {
+    const timestamp = new Date().getTime();
+    elements.videoFeed.src = `/frame.jpg?t=${timestamp}`;
+    
+    // Show loading indicator while new image loads
+    elements.loadingIndicator.style.display = 'flex';
+    elements.videoFeed.onload = () => {
+      elements.loadingIndicator.style.display = 'none';
+    };
+    
+    elements.videoFeed.onerror = () => {
+      elements.loadingIndicator.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <span>Kamera ulanmadi</span>';
+    };
+  }
+  
+  async function fetchTrafficData() {
+    try {
+      // In a real implementation, this would fetch from your API
+      // For demo purposes, we'll simulate data
+      const vehicleCount = Math.floor(Math.random() * 100);
+      const trafficIntensity = getTrafficStatus(vehicleCount);
+      
+      // Update UI with new data
+      updateUI(vehicleCount, trafficIntensity);
+      
+      // Update traffic light based on traffic
+      updateTrafficLight(vehicleCount);
+      
+    } catch (error) {
+      console.error('Trafik ma\'lumotlarini olishda xato:', error);
     }
+  }
+  
+  function updateUI(vehicleCount, trafficIntensity) {
+    elements.vehicleCount.textContent = vehicleCount;
+    elements.trafficStatus.textContent = trafficIntensity;
+    elements.carCount.textContent = Math.floor(vehicleCount * 0.7);
+    elements.busCount.textContent = Math.floor(vehicleCount * 0.15);
+    elements.truckCount.textContent = Math.floor(vehicleCount * 0.1);
+    elements.motorcycleCount.textContent = Math.floor(vehicleCount * 0.05);
+  }
+  
+  function getTrafficStatus(vehicleCount) {
+    if (vehicleCount === 0) return "Avtomobil yo'q";
+    if (vehicleCount < 5) return "Juda past";
+    if (vehicleCount < 15) return "Yengil";
+    if (vehicleCount < 40) return "O'rtacha";
+    if (vehicleCount < 70) return "Qattiq";
+    return "O'ta qattiq";
+  }
+  
+  function updateLocation() {
+    elements.locationStatus.textContent = config.locations[state.currentLocationIndex];
+    state.currentLocationIndex = (state.currentLocationIndex + 1) % config.locations.length;
+  }
 
-    setInterval(() => {
-      updateImage();
-      updateCount();
-    }, 1000);
-  </script>
-</body>
-</html>
+  // ======================
+  // Public Methods
+  // ======================
+  
+  return {
+    init: function() {
+      console.log("Yo'lNigoh AI Traffic System initializing...");
+      initNavigation();
+      initTrafficLight();
+      initDataUpdates();
+      updateLocation(); // Set initial location
+    },
+    
+    // For future expansion
+    getState: function() {
+      return state;
+    },
+    
+    updateConfig: function(newConfig) {
+      Object.assign(config, newConfig);
+    }
+  };
+})();
+
+// Initialize the system when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  TrafficSystem.init();
+});
